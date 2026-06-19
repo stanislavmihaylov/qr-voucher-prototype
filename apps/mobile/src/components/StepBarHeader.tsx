@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     textAlign: 'center',
-    lineHeight: 18,
+    includeFontPadding: false,
   },
   circleNumberActive: {
     color: '#020d42',
@@ -126,8 +126,7 @@ const styles = StyleSheet.create({
   },
   connector: {
     width: 37,
-    borderTopWidth: 1,
-    borderTopColor: '#ffffff',
-    borderStyle: 'dashed',
+    height: 1,
+    backgroundColor: '#ffffff',
   },
 })

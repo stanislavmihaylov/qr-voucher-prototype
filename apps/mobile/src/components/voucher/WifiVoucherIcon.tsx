@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '700',
     color: '#03135e',
-    lineHeight: 22,
     textAlign: 'center',
+    includeFontPadding: false,
   },
 })
