@@ -1,15 +1,22 @@
 /**
  * WifiVoucherIcon
  *
- * Renders the wifi base SVG asset with the duration number overlaid as a Text
- * element. This ensures the icon is always correct for any durationDays value
- * (including 3/5/10-day which have no dedicated Figma asset).
+ * Renders the wifi signal waves SVG (waves-only, no baked-in day number) with a
+ * dynamic numbered circle drawn as a React Native View + Text. This means the
+ * circle always shows the correct durationDays value from the API for any
+ * package (1, 4, 7, 10 days, etc.).
+ *
+ * Layout matches the original Figma design (node 2:1395/1396/1397):
+ *   - Outer container: 85×77 (viewBox of the original asset)
+ *   - Waves SVG: full 85×77, upper-right arcs
+ *   - Numbered circle: 40×40, positioned bottom-left at (4, 33) — matching
+ *     the original circle center of (24, 53) with radius 20 in the Figma asset
  *
  * Size: 85×77 — matches Figma spec for WifiVoucherCard icon area.
  */
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import WiFiBaseSvg from '../../../assets/features/voucher-selection/icon-wifi-1day.svg'
+import WifiWavesSvg from '../../../assets/features/voucher-selection/icon-wifi-waves.svg'
 
 interface WifiVoucherIconProps {
   durationDays: number
@@ -17,11 +24,22 @@ interface WifiVoucherIconProps {
 
 export function WifiVoucherIcon({ durationDays }: WifiVoucherIconProps) {
   return (
-    <View testID="wifi-voucher-icon" style={styles.container}>
-      <WiFiBaseSvg width={85} height={77} />
-      <Text style={styles.number} accessibilityLabel={`${durationDays} day icon`}>
-        {durationDays}
-      </Text>
+    <View
+      testID="wifi-voucher-icon"
+      accessibilityLabel={`${durationDays} day Wi-Fi icon`}
+      style={styles.container}
+    >
+      {/* Waves-only SVG — no baked-in number */}
+      <WifiWavesSvg testID="wifi-waves-svg" width={85} height={77} />
+
+      {/* Dynamic numbered circle — positioned to match the original Figma circle location.
+          Circle center in Figma: (24, 53) with radius 20
+          → left: 24 - 20 = 4, top: 53 - 20 = 33, size: 40×40 */}
+      <View style={styles.circle}>
+        <Text style={styles.number} accessibilityLabel={`${durationDays} day icon`}>
+          {durationDays}
+        </Text>
+      </View>
     </View>
   )
 }
@@ -32,15 +50,22 @@ const styles = StyleSheet.create({
     height: 77,
     position: 'relative',
   },
-  number: {
+  circle: {
     position: 'absolute',
-    bottom: 6,
-    left: 0,
-    right: 0,
-    textAlign: 'center',
+    left: 4,
+    top: 33,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#03135e',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  number: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#03135e',
+    color: '#ffffff',
     lineHeight: 20,
+    textAlign: 'center',
   },
 })
