@@ -1,0 +1,8 @@
+{
+  "feature_slug": "displays-three-wi-fi-package-cards-(1-da",
+  "date": "2026-06-19",
+  "agent": "user",
+  "feedback_type": "implementation_fix_request",
+  "description": "User requested implementation fixes: All icons are currently missing from the ui. Also for the dynamic wifi icon, I want only the waves part, the circle with the number inside should be dynamic based on the number of days coming from the db.",
+  "resolution": "pending"
+}
