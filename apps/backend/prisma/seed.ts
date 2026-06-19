@@ -1,6 +1,8 @@
 import { PrismaClient } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
 
-const prisma = new PrismaClient();
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
 const SEED_VOUCHERS = [
   { durationDays: 1, maxDevices: 2, priceGBP: 7.99, name: '1-day Wi-Fi voucher', description: '' },
