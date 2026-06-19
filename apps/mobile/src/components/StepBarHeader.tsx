@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    padding: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     textAlign: 'center',
-    lineHeight: 24,
+    lineHeight: 18,
   },
   circleNumberActive: {
     color: '#020d42',

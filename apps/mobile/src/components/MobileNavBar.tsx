@@ -6,10 +6,9 @@
  *   Left cluster: hamburger icon → Park Holidays logo → divider → Park Leisure logo
  *   Right cluster: empty View (no actions in prototype)
  *
- * ⚠️  logo-park-holidays.svg and logo-park-leisure.svg are placeholder SVGs.
- *     Replace them with the official exports from Figma nodes:
- *       I2:1410;1841:84723  (Park Holidays wordmark)
- *       I2:1410;6169:130133 (Park Leisure logo)
+ * logo-park-holidays.svg and logo-park-leisure.svg are reconstructed from Figma nodes:
+ *   I2:1410;1841:84723  (Park Holidays wordmark)
+ *   I2:1410;6169:130133 (Park Leisure logo)
  */
 import React from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
