@@ -1,2 +1,1 @@
-// Shared types — populated by plan-feature and feature-implementation-backend
-export {}
+export type { WifiVoucherResponse } from './voucher.types';
