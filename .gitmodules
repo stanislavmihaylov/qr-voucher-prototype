@@ -1,0 +1,3 @@
+[submodule "prototype-orchestrator"]
+	path = prototype-orchestrator
+	url = https://github.com/stanislavmihaylov/prototype-orchestrator
