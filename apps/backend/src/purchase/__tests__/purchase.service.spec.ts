@@ -52,7 +52,7 @@ describe('PurchaseService', () => {
       const dto: CreatePurchaseDto = {
         voucherId: 'voucher-1',
         billingAddress: { ...VALID_BILLING },
-      } as CreatePurchaseDto;
+      };
 
       const result = await service.createPurchase(dto);
 
@@ -69,11 +69,25 @@ describe('PurchaseService', () => {
       const dto: CreatePurchaseDto = {
         voucherId: 'voucher-1',
         billingAddress: { ...VALID_BILLING },
-      } as CreatePurchaseDto;
+      };
 
       await service.createPurchase(dto);
 
-      const createCall = mockPrismaService.purchase.create.mock.calls[0][0];
+      type BillingCreate = {
+        addressLine1: string;
+        addressLine2?: string;
+        county: string;
+      };
+      type CreateArg = {
+        data: {
+          status: string;
+          voucherId: string;
+          billingAddress: { create: BillingCreate };
+        };
+      };
+      const [firstCall] = mockPrismaService.purchase.create.mock
+        .calls as CreateArg[][];
+      const createCall = firstCall[0];
       expect(createCall.data.status).toBe('COMPLETED');
       expect(createCall.data.voucherId).toBe('voucher-1');
       expect(createCall.data.billingAddress.create.addressLine1).toBe(
@@ -99,15 +113,18 @@ describe('PurchaseService', () => {
           country: 'United Kingdom',
           // no addressLine2
         },
-      } as CreatePurchaseDto;
+      };
 
       const result = await service.createPurchase(dto);
 
       expect(result.status).toBe('COMPLETED');
-      expect(
-        mockPrismaService.purchase.create.mock.calls[0][0].data.billingAddress
-          .create.addressLine2,
-      ).toBeUndefined();
+
+      type BillingCreate = { addressLine2?: string };
+      type CreateArg2 = { data: { billingAddress: { create: BillingCreate } } };
+      const [firstCall2] = mockPrismaService.purchase.create.mock
+        .calls as CreateArg2[][];
+      const createArg = firstCall2[0];
+      expect(createArg.data.billingAddress.create.addressLine2).toBeUndefined();
     });
 
     // Slice 4: Unknown voucherId → 404 NotFoundException
@@ -117,7 +134,7 @@ describe('PurchaseService', () => {
       const dto: CreatePurchaseDto = {
         voucherId: 'nonexistent',
         billingAddress: { ...VALID_BILLING },
-      } as CreatePurchaseDto;
+      };
 
       await expect(service.createPurchase(dto)).rejects.toBeInstanceOf(
         NotFoundException,
@@ -131,7 +148,7 @@ describe('PurchaseService', () => {
       const dto: CreatePurchaseDto = {
         voucherId: 'nonexistent',
         billingAddress: { ...VALID_BILLING },
-      } as CreatePurchaseDto;
+      };
 
       await expect(service.createPurchase(dto)).rejects.toThrow(
         'Voucher not found',
