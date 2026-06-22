@@ -11,3 +11,12 @@ export function useVouchers() {
     queryFn: () => api.get<WifiVoucherResponse[]>('/api/vouchers'),
   })
 }
+
+/** Fetches a single Wi-Fi voucher package by id */
+export function useVoucher(id: string) {
+  return useQuery({
+    queryKey: [...VOUCHERS_QUERY_KEY, id],
+    queryFn: () => api.get<WifiVoucherResponse>(`/api/vouchers/${id}`),
+    enabled: !!id,
+  })
+}
