@@ -21,7 +21,7 @@ dev-backend:
 	cd apps/backend && pnpm dev
 
 dev-mobile:
-	cd apps/mobile && pnpm dev
+	cd apps/mobile && EXPO_PUBLIC_API_URL=http://$$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null || echo localhost):3001 pnpm dev
 
 # ── Database ──────────────────────────────────────────────────────────────────
 docker-up:

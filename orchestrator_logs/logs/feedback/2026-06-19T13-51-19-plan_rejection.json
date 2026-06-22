@@ -1,0 +1,8 @@
+{
+  "feature_slug": "voucher-selection",
+  "date": "2026-06-19",
+  "agent": "plan-feature",
+  "feedback_type": "plan_rejection",
+  "description": "Plan rejected. Feedback: I want the number of days mentioned in button, card and icon to be dynamic. Seed some test data with 1,3,4,5,7,10 days. Number of devices should also be dynamic and configurable. Seed different number of devices for different plans",
+  "resolution": "pending"
+}
