@@ -1,3 +1,4 @@
+import { randomInt } from 'node:crypto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreatePurchaseDto } from './dto/create-purchase.dto';
@@ -9,8 +10,8 @@ export class PurchaseService {
 
   private generateVoucherCode(): string {
     const pad = (n: number) => String(n).padStart(5, '0');
-    const a = pad(Math.floor(Math.random() * 100000));
-    const b = pad(Math.floor(Math.random() * 100000));
+    const a = pad(randomInt(100000));
+    const b = pad(randomInt(100000));
     return `${a} - ${b}`;
   }
 
