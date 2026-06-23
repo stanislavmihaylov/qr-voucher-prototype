@@ -1,0 +1,8 @@
+{
+  "feature_slug": "billing",
+  "date": "2026-06-22",
+  "agent": "reviewer",
+  "feedback_type": "review_finding",
+  "description": "Review found high issues: ## Review Report\n\n**Scope:** full (billing feature)\n**Files reviewed:** 11\n- Backend: `purchase.controller.ts`, `purchase.service.ts`, `dto/billing-address.dto.ts`, `dto/create-purchase.dto.ts`, `dto/",
+  "resolution": "resolved after 1 iteration"
+}

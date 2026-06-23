@@ -1,0 +1,56 @@
+{
+  "threadId": "2026-06-22T19-17-41",
+  "interactions": [
+    {
+      "interruptNumber": 1,
+      "presentedAt": "2026-06-22T19:24:54Z",
+      "respondedAt": "2026-06-22T19:43:34Z",
+      "waitDurationMs": 1120801,
+      "type": "approved",
+      "text": "approved",
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null
+    },
+    {
+      "interruptNumber": 2,
+      "presentedAt": "2026-06-22T20:15:07Z",
+      "respondedAt": "2026-06-23T10:12:27Z",
+      "waitDurationMs": 50240254,
+      "type": "feedback",
+      "text": "fix: 1. Remove icons that are not used\n2. Move icons that are used by common components in assets/common instead of putting them in the feature folder\n3. Make the county selector work as a real selector with all countries that are returned from backend",
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null
+    },
+    {
+      "interruptNumber": 2,
+      "presentedAt": "2026-06-23T10:43:23Z",
+      "respondedAt": "2026-06-23T10:55:18Z",
+      "waitDurationMs": 715690,
+      "type": "merge",
+      "text": "merge",
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null
+    }
+  ],
+  "totals": {
+    "totalTokens": 0,
+    "costUsd": 0,
+    "inputTokens": 0,
+    "cacheWriteTokens": 0,
+    "cacheReadTokens": 0,
+    "outputTokens": 0,
+    "updatedAt": "2026-06-23T10:55:18Z"
+  }
+}

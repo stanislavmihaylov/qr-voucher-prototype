@@ -1,0 +1,8 @@
+{
+  "feature_slug": "collect-a-user's-billing-address-via-a-6",
+  "date": "2026-06-23",
+  "agent": "user",
+  "feedback_type": "implementation_fix_request",
+  "description": "User requested implementation fixes: 1. Remove icons that are not used\n2. Move icons that are used by common components in assets/common instead of putting them in the feature folder\n3. Make the county selector work as a real selector with all countries that are returned from backend",
+  "resolution": "pending"
+}
