@@ -109,11 +109,12 @@ describe('PurchaseController', () => {
         .get('/api/purchases/purchase-1')
         .expect(200);
 
-      expect(response.body.id).toBe('purchase-1');
-      expect(response.body.qrCode).toBe('some-uuid');
-      expect(response.body.voucherCode).toBe('12345 - 67890');
-      expect(response.body.voucherName).toBe('1-day voucher');
-      expect(response.body.status).toBe('COMPLETED');
+      const body = response.body as typeof MOCK_PURCHASE_RESPONSE;
+      expect(body.id).toBe('purchase-1');
+      expect(body.qrCode).toBe('some-uuid');
+      expect(body.voucherCode).toBe('12345 - 67890');
+      expect(body.voucherName).toBe('1-day voucher');
+      expect(body.status).toBe('COMPLETED');
       expect(mockPurchaseService.findById).toHaveBeenCalledWith('purchase-1');
     });
 
@@ -123,9 +124,7 @@ describe('PurchaseController', () => {
         new NotFoundException('Purchase not found'),
       );
 
-      await request(server)
-        .get('/api/purchases/nonexistent')
-        .expect(404);
+      await request(server).get('/api/purchases/nonexistent').expect(404);
     });
   });
 
