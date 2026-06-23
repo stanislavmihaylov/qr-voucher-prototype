@@ -10,10 +10,17 @@ export type RootStackParamList = {
   /** Billing form — receives the selected voucher id as a param */
   Billing: { voucherId: string }
   /**
-   * QR code display screen — owned by the `qr-code` feature.
-   * Registered here as a placeholder so billing nav type-checks.
+   * QR code display screen — terminal screen after purchase success.
+   * `qrCode` is the raw QR payload; `voucherCode` is the human-readable code;
+   * `voucherName` is the display name of the purchased voucher.
    */
-  QRCode: { purchaseId: string; voucherId: string }
+  QRCode: {
+    purchaseId: string
+    voucherId: string
+    qrCode: string
+    voucherCode: string
+    voucherName: string
+  }
   /**
    * General error screen — owned by the `error` feature.
    * Registered here as a placeholder so billing nav type-checks.

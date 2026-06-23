@@ -23,11 +23,14 @@ const MOCK_PURCHASE_RESPONSE = {
   id: 'purchase-1',
   voucherId: 'voucher-1',
   qrCode: 'some-uuid',
+  voucherCode: '12345 - 67890',
+  voucherName: '1-day voucher',
   status: 'COMPLETED',
 };
 
 const mockPurchaseService = {
   createPurchase: jest.fn(),
+  findById: jest.fn(),
 };
 
 describe('PurchaseController', () => {
@@ -94,6 +97,34 @@ describe('PurchaseController', () => {
       await expect(controller.create(dto)).rejects.toBeInstanceOf(
         NotFoundException,
       );
+    });
+  });
+
+  // Slice 3 (qr-code feature): GET /api/purchases/:id returns full purchase DTO
+  describe('findOne()', () => {
+    it('should return qrCode, voucherCode, voucherName, and status for a known id', async () => {
+      mockPurchaseService.findById.mockResolvedValue(MOCK_PURCHASE_RESPONSE);
+
+      const response = await request(server)
+        .get('/api/purchases/purchase-1')
+        .expect(200);
+
+      const body = response.body as typeof MOCK_PURCHASE_RESPONSE;
+      expect(body.id).toBe('purchase-1');
+      expect(body.qrCode).toBe('some-uuid');
+      expect(body.voucherCode).toBe('12345 - 67890');
+      expect(body.voucherName).toBe('1-day voucher');
+      expect(body.status).toBe('COMPLETED');
+      expect(mockPurchaseService.findById).toHaveBeenCalledWith('purchase-1');
+    });
+
+    // Slice 4 (qr-code feature): GET /api/purchases/:id → 404 for unknown id
+    it('should return 404 when purchase id is unknown', async () => {
+      mockPurchaseService.findById.mockRejectedValue(
+        new NotFoundException('Purchase not found'),
+      );
+
+      await request(server).get('/api/purchases/nonexistent').expect(404);
     });
   });
 

@@ -1,0 +1,42 @@
+{
+  "threadId": "2026-06-23T11-19-22",
+  "interactions": [
+    {
+      "interruptNumber": 1,
+      "presentedAt": "2026-06-23T11:25:20Z",
+      "respondedAt": "2026-06-23T11:26:07Z",
+      "waitDurationMs": 47032,
+      "type": "approved",
+      "text": "approved",
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null
+    },
+    {
+      "interruptNumber": 2,
+      "presentedAt": "2026-06-23T11:54:32Z",
+      "respondedAt": "2026-06-23T12:44:03Z",
+      "waitDurationMs": 2971707,
+      "type": "merge",
+      "text": "merge",
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null
+    }
+  ],
+  "totals": {
+    "totalTokens": 0,
+    "costUsd": 0,
+    "inputTokens": 0,
+    "cacheWriteTokens": 0,
+    "cacheReadTokens": 0,
+    "outputTokens": 0,
+    "updatedAt": "2026-06-23T12:44:03Z"
+  }
+}

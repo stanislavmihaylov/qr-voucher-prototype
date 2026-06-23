@@ -22,6 +22,7 @@ model Purchase {
   id             String          @id @default(cuid())
   voucherId      String
   qrCodeData     String
+  voucherCode    String          @default("")
   status         PurchaseStatus  @default(PENDING)
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt

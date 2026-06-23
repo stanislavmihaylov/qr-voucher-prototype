@@ -12,12 +12,18 @@ const VALID_BILLING = {
   country: 'United Kingdom',
 };
 
-const MOCK_VOUCHER = { id: 'voucher-1', durationDays: 7, priceGBP: 17.99 };
+const MOCK_VOUCHER = {
+  id: 'voucher-1',
+  name: '1-day voucher',
+  durationDays: 7,
+  priceGBP: 17.99,
+};
 
 const MOCK_PURCHASE = {
   id: 'purchase-1',
   voucherId: 'voucher-1',
   qrCodeData: 'some-uuid',
+  voucherCode: '12345 - 67890',
   status: 'COMPLETED',
   createdAt: new Date(),
   updatedAt: new Date(),
@@ -25,7 +31,7 @@ const MOCK_PURCHASE = {
 
 const mockPrismaService = {
   wifiVoucher: { findUnique: jest.fn() },
-  purchase: { create: jest.fn() },
+  purchase: { create: jest.fn(), findUnique: jest.fn() },
 };
 
 describe('PurchaseService', () => {
@@ -98,6 +104,43 @@ describe('PurchaseService', () => {
       );
     });
 
+    // Slice 1 (qr-code feature): createPurchase returns voucherCode + voucherName
+    it('should return voucherCode matching /^\\d{5} - \\d{5}$/ and voucherName equal to voucher.name', async () => {
+      mockPrismaService.wifiVoucher.findUnique.mockResolvedValue(MOCK_VOUCHER);
+      mockPrismaService.purchase.create.mockResolvedValue({
+        ...MOCK_PURCHASE,
+        voucherCode: '12345 - 67890',
+      });
+
+      const dto: CreatePurchaseDto = {
+        voucherId: 'voucher-1',
+        billingAddress: { ...VALID_BILLING },
+      };
+
+      const result = await service.createPurchase(dto);
+
+      expect(result.voucherCode).toMatch(/^\d{5} - \d{5}$/);
+      expect(result.voucherName).toBe('1-day voucher');
+    });
+
+    // Slice 2 (qr-code feature): voucherCode is persisted to the DB
+    it('should persist voucherCode in the purchase.create call', async () => {
+      mockPrismaService.wifiVoucher.findUnique.mockResolvedValue(MOCK_VOUCHER);
+      mockPrismaService.purchase.create.mockResolvedValue(MOCK_PURCHASE);
+
+      const dto: CreatePurchaseDto = {
+        voucherId: 'voucher-1',
+        billingAddress: { ...VALID_BILLING },
+      };
+
+      await service.createPurchase(dto);
+
+      type CreateArg = { data: { voucherCode: string } };
+      const [firstCall] = mockPrismaService.purchase.create.mock
+        .calls as CreateArg[][];
+      expect(firstCall[0].data.voucherCode).toMatch(/^\d{5} - \d{5}$/);
+    });
+
     // Slice 3: Optional field — body without addressLine2 succeeds
     it('should succeed when addressLine2 is not provided', async () => {
       mockPrismaService.wifiVoucher.findUnique.mockResolvedValue(MOCK_VOUCHER);
@@ -127,6 +170,35 @@ describe('PurchaseService', () => {
       expect(createArg.data.billingAddress.create.addressLine2).toBeUndefined();
     });
 
+    // Slices 3 & 4 (qr-code feature): findById
+  });
+
+  describe('findById()', () => {
+    it('should return full PurchaseResponseDto including qrCode, voucherCode, voucherName', async () => {
+      mockPrismaService.purchase.findUnique.mockResolvedValue({
+        ...MOCK_PURCHASE,
+        voucher: MOCK_VOUCHER,
+      });
+
+      const result = await service.findById('purchase-1');
+
+      expect(result.id).toBe('purchase-1');
+      expect(result.qrCode).toBe('some-uuid');
+      expect(result.voucherCode).toBe('12345 - 67890');
+      expect(result.voucherName).toBe('1-day voucher');
+      expect(result.status).toBe('COMPLETED');
+    });
+
+    it('should throw NotFoundException when id does not exist', async () => {
+      mockPrismaService.purchase.findUnique.mockResolvedValue(null);
+
+      await expect(service.findById('nonexistent')).rejects.toBeInstanceOf(
+        NotFoundException,
+      );
+    });
+  });
+
+  describe('createPurchase() — error cases', () => {
     // Slice 4: Unknown voucherId → 404 NotFoundException
     it('should throw NotFoundException when voucherId does not exist', async () => {
       mockPrismaService.wifiVoucher.findUnique.mockResolvedValue(null);

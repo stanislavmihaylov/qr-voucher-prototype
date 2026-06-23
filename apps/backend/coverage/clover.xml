@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1782211235699" clover="3.2.0">
-  <project timestamp="1782211235700" name="All files">
-    <metrics statements="138" coveredstatements="96" conditionals="68" coveredconditionals="44" methods="31" coveredmethods="24" elements="237" coveredelements="164" complexity="0" loc="138" ncloc="138" packages="8" files="21" classes="21"/>
+<coverage generated="1782215518386" clover="3.2.0">
+  <project timestamp="1782215518386" name="All files">
+    <metrics statements="152" coveredstatements="110" conditionals="73" coveredconditionals="48" methods="35" coveredmethods="28" elements="260" coveredelements="186" complexity="0" loc="152" ncloc="152" packages="8" files="21" classes="21"/>
     <package name="src">
       <metrics statements="25" coveredstatements="9" conditionals="6" coveredconditionals="3" methods="4" coveredmethods="3"/>
       <file name="app.controller.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/app.controller.ts">
@@ -102,16 +102,18 @@
       </file>
     </package>
     <package name="src.purchase">
-      <metrics statements="23" coveredstatements="18" conditionals="17" coveredconditionals="13" methods="4" coveredmethods="4"/>
+      <metrics statements="35" coveredstatements="30" conditionals="22" coveredconditionals="17" methods="8" coveredmethods="8"/>
       <file name="purchase.controller.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/purchase.controller.ts">
-        <metrics statements="7" coveredstatements="7" conditionals="12" coveredconditionals="9" methods="2" coveredmethods="2"/>
+        <metrics statements="9" coveredstatements="9" conditionals="16" coveredconditionals="12" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="9" type="cond" truecount="3" falsecount="1"/>
-        <line num="12" count="1" type="cond" truecount="6" falsecount="2"/>
-        <line num="13" count="3" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="11" type="cond" truecount="3" falsecount="1"/>
+        <line num="20" count="1" type="cond" truecount="6" falsecount="2"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="25" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="26" count="2" type="stmt"/>
       </file>
       <file name="purchase.module.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/purchase.module.ts">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -122,22 +124,32 @@
         <line num="12" count="0" type="stmt"/>
       </file>
       <file name="purchase.service.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/purchase.service.ts">
-        <metrics statements="11" coveredstatements="11" conditionals="5" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <metrics statements="21" coveredstatements="21" conditionals="6" coveredconditionals="5" methods="5" coveredmethods="5"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="5" type="cond" truecount="3" falsecount="1"/>
-        <line num="11" count="5" type="stmt"/>
-        <line num="14" count="5" type="cond" truecount="1" falsecount="0"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
-        <line num="20" count="3" type="stmt"/>
-        <line num="38" count="3" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="9" type="cond" truecount="3" falsecount="1"/>
+        <line num="12" count="10" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
+        <line num="22" count="7" type="cond" truecount="1" falsecount="0"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="48" count="5" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="63" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.purchase.dto">
-      <metrics statements="29" coveredstatements="28" conditionals="20" coveredconditionals="10" methods="8" coveredmethods="7"/>
+      <metrics statements="31" coveredstatements="30" conditionals="20" coveredconditionals="10" methods="8" coveredmethods="7"/>
       <file name="billing-address.dto.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/dto/billing-address.dto.ts">
         <metrics statements="15" coveredstatements="14" conditionals="12" coveredconditionals="5" methods="6" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
@@ -167,14 +179,16 @@
         <line num="12" count="1" type="cond" truecount="3" falsecount="1"/>
       </file>
       <file name="purchase-response.dto.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/dto/purchase-response.dto.ts">
-        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
-        <line num="11" count="3" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
       </file>
     </package>
     <package name="src.voucher">
