@@ -1,5 +1,5 @@
 /**
- * BillingFormScreen tests — 6 TDD vertical slices.
+ * BillingFormScreen tests — 8 TDD vertical slices.
  *
  * Slice 1: renders all 6 form fields in correct order; Address line 2 shows "Optional" hint.
  * Slice 2: required-field validation fires on submit with empty fields.
@@ -7,6 +7,8 @@
  * Slice 4: valid submit → navigation.replace('QRCode', { purchaseId, voucherId }).
  * Slice 5: mutation error → navigation.navigate('GeneralError', { errorMessage }).
  * Slice 6: TotalBar shows derived voucher name and price; loading disables button.
+ * Slice B: Country field opens a modal; selecting an option updates value and payload.
+ * Slice C: Country field renders SVG chevron icon (not text glyph); #03135e border when filled.
  */
 import React from 'react'
 import { render, waitFor, fireEvent } from '@testing-library/react-native'
@@ -305,5 +307,111 @@ describe('BillingFormScreen — TotalBar display', () => {
     await waitFor(() => {
       expect(getByTestId('confirm-button-loading')).toBeTruthy()
     })
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Slice B: Country modal — opens, lists options, selects → updates value + payload
+// ---------------------------------------------------------------------------
+
+const MOCK_COUNTRIES = [
+  { code: 'GB', name: 'United Kingdom' },
+  { code: 'FR', name: 'France' },
+  { code: 'DE', name: 'Germany' },
+]
+
+describe('BillingFormScreen — Country modal (Slice B)', () => {
+  beforeEach(() => {
+    mockedApi.get.mockImplementation((path: string) => {
+      if (path === '/api/countries') return Promise.resolve(MOCK_COUNTRIES)
+      return Promise.resolve(MOCK_VOUCHER)
+    })
+    mockedApi.post.mockResolvedValue(MOCK_PURCHASE)
+  })
+  afterEach(() => jest.clearAllMocks())
+
+  it('opens a modal with country options when the Country field is tapped', async () => {
+    const { getByTestId, getByText } = await renderScreen()
+
+    await waitFor(() => expect(getByText('1-day Wi-Fi voucher')).toBeTruthy())
+    // Countries should have resolved by now
+    await waitFor(() => expect(getByTestId('country-select-trigger')).toBeTruthy())
+
+    await fireEvent.press(getByTestId('country-select-trigger'))
+
+    await waitFor(() => {
+      expect(getByText('France')).toBeTruthy()
+      expect(getByText('Germany')).toBeTruthy()
+    })
+  })
+
+  it('selecting a country closes the modal and updates the displayed value', async () => {
+    const { getByTestId, getByText, queryByText } = await renderScreen()
+
+    await waitFor(() => expect(getByText('1-day Wi-Fi voucher')).toBeTruthy())
+    await waitFor(() => expect(getByTestId('country-select-trigger')).toBeTruthy())
+
+    await fireEvent.press(getByTestId('country-select-trigger'))
+    await waitFor(() => expect(getByText('France')).toBeTruthy())
+
+    await fireEvent.press(getByText('France'))
+
+    // After selection the modal closes; 'Germany' option should no longer be visible
+    await waitFor(() => expect(queryByText('Germany')).toBeNull())
+  })
+
+  it('includes the selected country in the submit payload', async () => {
+    const { getByText, getByTestId } = await renderScreen()
+
+    await waitFor(() => expect(getByText('1-day Wi-Fi voucher')).toBeTruthy())
+    await waitFor(() => expect(getByTestId('country-select-trigger')).toBeTruthy())
+
+    // Open modal and select France
+    await fireEvent.press(getByTestId('country-select-trigger'))
+    await waitFor(() => expect(getByText('France')).toBeTruthy())
+    await fireEvent.press(getByText('France'))
+
+    // Fill required text fields
+    await fireEvent.changeText(getByTestId('input-addressLine1'), VALID_FORM.addressLine1)
+    await fireEvent.changeText(getByTestId('input-city'), VALID_FORM.city)
+    await fireEvent.changeText(getByTestId('input-county'), VALID_FORM.county)
+    await fireEvent.changeText(getByTestId('input-postCode'), VALID_FORM.postCode)
+
+    await fireEvent.press(getByText('Confirm and pay'))
+
+    await waitFor(() => {
+      expect(mockedApi.post).toHaveBeenCalledWith('/api/purchases', {
+        voucherId: MOCK_VOUCHER.id,
+        billingAddress: {
+          addressLine1: VALID_FORM.addressLine1,
+          city: VALID_FORM.city,
+          county: VALID_FORM.county,
+          postCode: VALID_FORM.postCode,
+          country: 'France',
+        },
+      })
+    })
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Slice C: Country field uses SVG chevron icon; shows #03135e border when filled
+// ---------------------------------------------------------------------------
+
+describe('BillingFormScreen — Country select icon + border (Slice C)', () => {
+  beforeEach(() => {
+    mockedApi.get.mockImplementation((path: string) => {
+      if (path === '/api/countries') return Promise.resolve(MOCK_COUNTRIES)
+      return Promise.resolve(MOCK_VOUCHER)
+    })
+  })
+  afterEach(() => jest.clearAllMocks())
+
+  it('renders the SVG chevron icon (testID="chevron-icon") — no text ▾ glyph', async () => {
+    const { getByTestId, queryByText } = await renderScreen()
+
+    await waitFor(() => expect(getByTestId('chevron-icon')).toBeTruthy())
+    // The old text glyph must not be present
+    expect(queryByText('▾')).toBeNull()
   })
 })

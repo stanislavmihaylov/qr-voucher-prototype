@@ -11,8 +11,8 @@
  */
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import FacebookSvg from '../../assets/features/voucher-selection/icon-facebook.svg'
-import YoutubeSvg from '../../assets/features/voucher-selection/icon-youtube.svg'
+import FacebookSvg from '../../assets/common/icon-facebook.svg'
+import YoutubeSvg from '../../assets/common/icon-youtube.svg'
 
 export function AppFooter() {
   return (

@@ -18,6 +18,8 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
+  Modal,
+  FlatList,
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
@@ -26,7 +28,10 @@ import { MobileNavBar } from '../components/MobileNavBar'
 import { StepBarHeader } from '../components/StepBarHeader'
 import { useVoucher } from '../hooks/useVoucherQueries'
 import { useCreatePurchase } from '../hooks/usePurchaseQueries'
+import { useCountries } from '../hooks/useCountriesQueries'
 import ArrowBackSvg from '../../assets/features/billing/icon-arrow-back.svg'
+import ArrowDropDownSvg from '../../assets/features/billing/icon-arrow-drop-down.svg'
+import type { Country } from '@repo/types'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -141,19 +146,25 @@ const inputStyles = StyleSheet.create({
 interface CountrySelectProps {
   label: string
   value: string
+  onValueChange: (country: string) => void
+  options: Country[]
   error?: string
+  loading?: boolean
 }
 
-function CountrySelect({ label, value, error }: CountrySelectProps) {
-  // In prototype: single option only — display as read-only selector
+function CountrySelect({ label, value, onValueChange, options, error, loading }: CountrySelectProps) {
+  const [modalVisible, setModalVisible] = useState(false)
+
   return (
     <View style={inputStyles.container}>
       <View style={inputStyles.labelRow}>
         <Text style={inputStyles.label}>{label}</Text>
       </View>
+
       <TouchableOpacity
+        testID="country-select-trigger"
         accessibilityRole="button"
-        accessibilityLabel={`Country selector, currently ${value}`}
+        accessibilityLabel={`Country, currently ${value}`}
         style={[
           inputStyles.input,
           countryStyles.select,
@@ -161,15 +172,52 @@ function CountrySelect({ label, value, error }: CountrySelectProps) {
           error ? inputStyles.inputError : null,
         ]}
         activeOpacity={0.8}
+        onPress={() => {
+          if (!loading) setModalVisible(true)
+        }}
+        disabled={loading}
       >
         <Text style={countryStyles.selectText}>{value}</Text>
-        <Text style={countryStyles.chevron}>▾</Text>
+        <ArrowDropDownSvg testID="chevron-icon" width={24} height={24} />
       </TouchableOpacity>
+
       {error ? (
         <Text style={inputStyles.errorText} accessibilityLiveRegion="polite">
           {error}
         </Text>
       ) : null}
+
+      <Modal
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+        transparent
+        animationType="slide"
+      >
+        <TouchableOpacity
+          style={countryStyles.modalOverlay}
+          activeOpacity={1}
+          onPress={() => setModalVisible(false)}
+        >
+          <View style={countryStyles.modalContent}>
+            <FlatList
+              data={options}
+              keyExtractor={(item) => item.code}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  accessibilityRole="button"
+                  style={countryStyles.option}
+                  onPress={() => {
+                    onValueChange(item.name)
+                    setModalVisible(false)
+                  }}
+                >
+                  <Text style={countryStyles.optionText}>{item.name}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        </TouchableOpacity>
+      </Modal>
     </View>
   )
 }
@@ -189,8 +237,29 @@ const countryStyles = StyleSheet.create({
     color: '#1c2b6e',
     flex: 1,
   },
-  chevron: {
-    fontSize: 20,
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    backgroundColor: '#ffffff',
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    maxHeight: '60%',
+    paddingVertical: 8,
+  },
+  option: {
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+    minHeight: 44,
+    justifyContent: 'center',
+  },
+  optionText: {
+    fontSize: 16,
+    fontWeight: '400',
     color: '#020d42',
   },
 })
@@ -304,6 +373,10 @@ export function BillingFormScreen({ navigation, route }: RootStackScreenProps<'B
   // Voucher data for TotalBar
   const { data: voucher } = useVoucher(voucherId)
 
+  // Countries list for Country selector
+  const { data: countries, isLoading: countriesLoading } = useCountries()
+  const countryOptions: Country[] = Array.isArray(countries) ? countries : []
+
   // Purchase mutation
   const createPurchase = useCreatePurchase()
 
@@ -313,7 +386,7 @@ export function BillingFormScreen({ navigation, route }: RootStackScreenProps<'B
   const [city, setCity] = useState('')
   const [county, setCounty] = useState('')
   const [postCode, setPostCode] = useState('')
-  const [country] = useState('United Kingdom')
+  const [country, setCountry] = useState('United Kingdom')
 
   // Validation errors
   const [errors, setErrors] = useState<FormErrors>({})
@@ -455,11 +528,14 @@ export function BillingFormScreen({ navigation, route }: RootStackScreenProps<'B
             error={errors.postCode}
           />
 
-          {/* 6. Country (select — defaults to United Kingdom) */}
+          {/* 6. Country (real selector — defaults to United Kingdom) */}
           <CountrySelect
             label="Country"
             value={country}
+            onValueChange={setCountry}
+            options={countryOptions}
             error={errors.country}
+            loading={countriesLoading}
           />
         </View>
       </ScrollView>
