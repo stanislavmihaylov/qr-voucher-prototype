@@ -8,7 +8,7 @@
 
 - [x] `voucher-selection` — Browse and select a Wi-Fi package from the list (depends on: nothing)
 - [x] `billing` — Enter billing/address details before mock payment (depends on: voucher-selection)
-- [ ] `qr-code` — Display QR code after mock payment success (depends on: billing)
+- [x] `qr-code` — Display QR code after mock payment success (depends on: billing)
 - [ ] `error` — Generic error screen with retry CTA (depends on: nothing)
 
 ## In Progress
@@ -73,3 +73,26 @@ _none_
 ### Assets
 - [ ] Confirm `logo-redflag.svg`, `logo-wifiparkholidays.svg`, `icon-menu.svg`, `icon-arrow-back.svg` in `apps/mobile/assets/features/billing/` load correctly (all exported ✅)
 - [ ] Consider consolidating duplicate logo/icon assets shared with `voucher-selection` into `apps/mobile/assets/shared/` to avoid duplication
+
+## Feature: QR Code
+> Display a scannable QR code and formatted voucher code after mock purchase success, with a success toast and copy/share actions.
+
+### Backend
+- [ ] Add `qrCode: String` field to `Purchase` model (unique per purchase — store the raw QR payload, e.g. `purchaseId` UUID)
+- [ ] Add `voucherCode: String` field to `Purchase` model (short human-readable code, e.g. `"81353 - 42142"` — generate from purchaseId or store separately)
+- [ ] POST `/api/purchases` — update response to include `{ id, voucherId, qrCode, voucherCode, status }` (qrCode and voucherCode already need to be generated at creation time)
+- [ ] GET `/api/purchases/:id` — return single purchase with `qrCode`, `voucherCode`, `voucherId`, `status` (for re-fetch if needed)
+
+### Frontend
+- [ ] Install `react-native-qrcode-svg`: `pnpm add react-native-qrcode-svg` (depends on `react-native-svg` already configured in voucher-selection)
+- [ ] `usePurchaseQueries.ts` — add `usePurchase(id)` hook (`useQuery` fetching GET `/api/purchases/:id`) alongside existing `useCreatePurchase()` mutation
+- [ ] `QRCodeScreen` — terminal screen; receives route params `{ purchaseId, voucherId, qrCode, voucherCode, voucherName }`; renders wifi icon, voucher name, QR code (256×256 via `react-native-qrcode-svg`), voucher code text, "Copy code" + "Send code" buttons, `AppFooter`
+- [ ] Toast animation — `Animated.Value` fade-out over 500 ms after 3000 ms delay; rendered as absolutely-positioned overlay
+- [ ] "Copy code" handler — `Clipboard.setStringAsync(voucherCode)` + temporary "Copied!" button label feedback (1.5 s timeout)
+- [ ] "Send code" handler — `Share.share({ message: voucherCode })` native share sheet
+- [ ] React Navigation: register `QRCodeScreen` in Main Stack; `BillingFormScreen` uses `navigation.replace('QRCodeScreen', params)` on success; disable swipe-back gesture (`gestureEnabled: false`)
+
+### Assets
+- [x] `icon-wifi.svg` — exported (SVG, 56×56, confirmed) → `apps/mobile/assets/features/qr-code/`
+- [x] `icon-copy.svg` — exported (SVG, 24×24, confirmed) → `apps/mobile/assets/features/qr-code/`
+- [ ] Reuse `logo-park-holidays.svg`, `logo-park-leisure.svg`, `icon-menu.svg`, `icon-facebook.svg`, `icon-youtube.svg` from `apps/mobile/assets/features/voucher-selection/` (or move to `apps/mobile/assets/shared/`)
