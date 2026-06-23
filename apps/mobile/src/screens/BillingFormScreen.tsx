@@ -433,7 +433,13 @@ export function BillingFormScreen({ navigation, route }: RootStackScreenProps<'B
       },
       {
         onSuccess: (purchase) => {
-          navigation.replace('QRCode', { purchaseId: purchase.id, voucherId })
+          navigation.replace('QRCode', {
+            purchaseId: purchase.id,
+            voucherId,
+            qrCode: purchase.qrCode,
+            voucherCode: purchase.voucherCode,
+            voucherName: purchase.voucherName,
+          })
         },
         onError: (err) => {
           const errorMessage = err instanceof Error ? err.message : 'Something went wrong'
