@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1781879730908" clover="3.2.0">
-  <project timestamp="1781879730908" name="All files">
-    <metrics statements="63" coveredstatements="39" conditionals="27" coveredconditionals="18" methods="14" coveredmethods="11" elements="104" coveredelements="68" complexity="0" loc="63" ncloc="63" packages="5" files="11" classes="11"/>
+<coverage generated="1782211235699" clover="3.2.0">
+  <project timestamp="1782211235700" name="All files">
+    <metrics statements="138" coveredstatements="96" conditionals="68" coveredconditionals="44" methods="31" coveredmethods="24" elements="237" coveredelements="164" complexity="0" loc="138" ncloc="138" packages="8" files="21" classes="21"/>
     <package name="src">
-      <metrics statements="20" coveredstatements="9" conditionals="6" coveredconditionals="3" methods="4" coveredmethods="3"/>
+      <metrics statements="25" coveredstatements="9" conditionals="6" coveredconditionals="3" methods="4" coveredmethods="3"/>
       <file name="app.controller.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/app.controller.ts">
         <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
@@ -14,13 +14,15 @@
         <line num="10" count="1" type="stmt"/>
       </file>
       <file name="app.module.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/app.module.ts">
-        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
       </file>
       <file name="app.service.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/app.service.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -29,12 +31,15 @@
         <line num="6" count="1" type="stmt"/>
       </file>
       <file name="main.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/main.ts">
-        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.auth">
@@ -44,11 +49,41 @@
         <line num="1" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.countries">
+      <metrics statements="15" coveredstatements="10" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="2"/>
+      <file name="countries.controller.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/countries/countries.controller.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+      </file>
+      <file name="countries.data.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/countries/countries.data.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+      <file name="countries.module.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/countries/countries.module.ts">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="countries.service.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/countries/countries.service.ts">
+        <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.prisma">
-      <metrics statements="7" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="10" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="prisma.module.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/prisma/prisma.module.ts">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -56,11 +91,90 @@
         <line num="9" count="0" type="stmt"/>
       </file>
       <file name="prisma.service.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/prisma/prisma.service.ts">
-        <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="7" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.purchase">
+      <metrics statements="23" coveredstatements="18" conditionals="17" coveredconditionals="13" methods="4" coveredmethods="4"/>
+      <file name="purchase.controller.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/purchase.controller.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="12" coveredconditionals="9" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="9" type="cond" truecount="3" falsecount="1"/>
+        <line num="12" count="1" type="cond" truecount="6" falsecount="2"/>
+        <line num="13" count="3" type="stmt"/>
+      </file>
+      <file name="purchase.module.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/purchase.module.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+      <file name="purchase.service.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/purchase.service.ts">
+        <metrics statements="11" coveredstatements="11" conditionals="5" coveredconditionals="4" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="5" type="cond" truecount="3" falsecount="1"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="14" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.purchase.dto">
+      <metrics statements="29" coveredstatements="28" conditionals="20" coveredconditionals="10" methods="8" coveredmethods="7"/>
+      <file name="billing-address.dto.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/dto/billing-address.dto.ts">
+        <metrics statements="15" coveredstatements="14" conditionals="12" coveredconditionals="5" methods="6" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="9" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="25" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="33" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="41" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="49" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="51" count="1" type="stmt"/>
+      </file>
+      <file name="create-purchase.dto.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/dto/create-purchase.dto.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="12" count="1" type="cond" truecount="3" falsecount="1"/>
+      </file>
+      <file name="purchase-response.dto.ts" path="/Applications/Projects/qr-voucher-prototype/apps/backend/src/purchase/dto/purchase-response.dto.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
       </file>
     </package>
     <package name="src.voucher">

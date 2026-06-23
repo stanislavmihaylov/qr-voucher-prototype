@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/app.module.ts</title>
+    <title>Code coverage report for src/purchase/purchase.controller.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> app.module.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/purchase</a> purchase.controller.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>9/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -77,34 +77,37 @@
 <a name='L12'></a><a href='#L12'>12</a>
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a>
-<a name='L15'></a><a href='#L15'>15</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { Module } from '@nestjs/common';</span>
-<span class="cstat-no" title="statement not covered" >import { AppController } from './app.controller';</span>
-<span class="cstat-no" title="statement not covered" >import { AppService } from './app.service';</span>
-<span class="cstat-no" title="statement not covered" >import { PrismaModule } from './prisma/prisma.module';</span>
-<span class="cstat-no" title="statement not covered" >import { VoucherModule } from './voucher/voucher.module';</span>
-<span class="cstat-no" title="statement not covered" >import { PurchaseModule } from './purchase/purchase.module';</span>
-<span class="cstat-no" title="statement not covered" >import { CountriesModule } from './countries/countries.module';</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
+import { PurchaseService } from './purchase.service';
+import { CreatePurchaseDto } from './dto/create-purchase.dto';
+import { PurchaseResponseDto } from './dto/purchase-response.dto';
 &nbsp;
-@Module({
-  imports: [PrismaModule, VoucherModule, PurchaseModule, CountriesModule],
-  controllers: [AppController],
-  providers: [AppService],
-})
-export <span class="cstat-no" title="statement not covered" >class <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >AppModule </span>{}</span></span>
+@Controller('api/purchases')
+export class PurchaseController {
+  constructor(private readonly purchaseService: PurchaseService<span class="branch-1 cbranch-no" title="branch not covered" >) {}</span>
+&nbsp;
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  create(@Body() dto: CreatePurchaseDto<span class="branch-1 cbranch-no" title="branch not covered" >): P</span>romise<span class="branch-1 cbranch-no" title="branch not covered" >&lt;PurchaseResponseDto&gt; {</span>
+    return this.purchaseService.createPurchase(dto);
+  }
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -114,14 +117,14 @@ export <span class="cstat-no" title="statement not covered" >class <span class="
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2026-06-23T10:40:35.341Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     
