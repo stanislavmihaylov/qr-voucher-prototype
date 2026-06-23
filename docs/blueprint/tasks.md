@@ -7,7 +7,7 @@
 ## Backlog
 
 - [x] `voucher-selection` — Browse and select a Wi-Fi package from the list (depends on: nothing)
-- [ ] `billing` — Enter billing/address details before mock payment (depends on: voucher-selection)
+- [x] `billing` — Enter billing/address details before mock payment (depends on: voucher-selection)
 - [ ] `qr-code` — Display QR code after mock payment success (depends on: billing)
 - [ ] `error` — Generic error screen with retry CTA (depends on: nothing)
 
@@ -51,3 +51,25 @@ _none_
 - [ ] `logo-park-holidays.svg` — **MISSING** — export from Figma node `I2:1410;1841:84723` as SVG → same dir
 - [ ] `logo-park-leisure.svg` — **MISSING** — export from Figma node `I2:1410;6169:130133` as SVG → same dir
 - [ ] Verify all 8 SVG assets render correctly in Expo dev build (requires `react-native-svg` + transformer) before shipping the screen
+
+## Feature: Billing
+> Collect a user's billing address via a 6-field form and submit a mock purchase, navigating to the QR code screen on success.
+
+### Backend
+- [ ] Prisma model: `BillingAddress` (fields: `id`, `purchaseId`, `addressLine1`, `addressLine2?`, `city`, `county`, `postCode`, `country`, `createdAt`)
+- [ ] Prisma model: `Purchase` (fields: `id`, `voucherId`, `status` enum `COMPLETED`, `billingAddressId?`, `createdAt`)
+- [ ] POST `/api/purchases` — create Purchase (status=COMPLETED) + nested BillingAddress; return `{ id, voucherId, qrCode, status }`
+- [ ] QR code generation: encode `purchaseId` (or a UUID token) as the QR payload — can use `qrcode` npm package server-side or pass raw string to mobile for client-side rendering
+
+### Frontend
+- [ ] `usePurchaseQueries.ts` — `useCreatePurchase()` mutation hook (TanStack Query `useMutation` via `api.ts`)
+- [ ] `BillingFormScreen` — form with 6 fields (Address line 1, Address line 2 optional, Town/City, County, Post code, Country select); sticky `TotalBar` footer; `KeyboardAvoidingView`; inline required-field validation on submit
+- [ ] `FormInput` component — reusable labeled text input with optional hint and error state (Label/sm label, TextInput, optional "Optional" hint, error message below)
+- [ ] `CountrySelect` component — `TouchableOpacity` triggering a Modal/Picker with country list; displays selected value + dropdown chevron; filled state has `#03135e` border
+- [ ] `TotalBar` component — sticky bottom bar showing voucher name + "Total: £X.XX" + "Confirm and pay" pill button; props: `voucherName`, `priceGBP`, `onConfirm`, `isLoading`
+- [ ] React Navigation: register `BillingFormScreen` in Main Stack, after `VoucherSelectedScreen`; on success use `navigation.replace('QRCodeScreen', { purchaseId, voucherId })`
+- [ ] Zustand: read `selectedVoucher` from `voucher.store.ts` in `BillingFormScreen` — no new store slice needed
+
+### Assets
+- [ ] Confirm `logo-redflag.svg`, `logo-wifiparkholidays.svg`, `icon-menu.svg`, `icon-arrow-back.svg` in `apps/mobile/assets/features/billing/` load correctly (all exported ✅)
+- [ ] Consider consolidating duplicate logo/icon assets shared with `voucher-selection` into `apps/mobile/assets/shared/` to avoid duplication

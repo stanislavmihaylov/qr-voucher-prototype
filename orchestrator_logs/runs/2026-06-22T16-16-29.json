@@ -1,0 +1,68 @@
+{
+  "threadId": "2026-06-22T16-16-29",
+  "pid": 46398,
+  "createdAt": "2026-06-22T16:16:29Z",
+  "updatedAt": "2026-06-22T16:16:49Z",
+  "state": {
+    "flowName": "billing",
+    "featureSlug": "billing",
+    "featureDescription": "",
+    "scope": "auto",
+    "status": "failed",
+    "errorMessage": "Tool `mcp__figma__get_design_context` is not available. The Figma MCP server is not running or is not connected in this environment.",
+    "iteration": 0,
+    "featurePlan": "",
+    "planFeedback": "",
+    "openQuestions": [],
+    "questionAnswers": {},
+    "reviewSeverity": "clean"
+  },
+  "nodes": [
+    {
+      "node": "environment_check",
+      "agentName": "node:env-check",
+      "model": "n/a",
+      "pid": null,
+      "startedAt": "2026-06-22T16:16:29Z",
+      "completedAt": "2026-06-22T16:16:30Z",
+      "durationMs": 1866,
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null,
+      "status": "success",
+      "error": null,
+      "outputPreview": null
+    },
+    {
+      "node": "design_analyst_flow",
+      "agentName": "design-analyst-flow",
+      "model": "claude-sonnet-4-6",
+      "pid": 46522,
+      "startedAt": "2026-06-22T16:16:31Z",
+      "completedAt": "2026-06-22T16:16:48Z",
+      "durationMs": 17320,
+      "totalTokens": 48796,
+      "inputTokens": 6,
+      "cacheWriteTokens": 3246,
+      "cacheReadTokens": 44996,
+      "outputTokens": 548,
+      "costUsd": 0.0339,
+      "status": "failed",
+      "error": "FIGMA_MCP_FAILED: Tool `mcp__figma__get_design_context` is not available. The Figma MCP server is not running or is not connected in this environment.\n\nPer the absolute rule for this agent: Figma is the only source of truth. Since the MCP tool is unavailable, I cannot retrieve live design data, and producing a partial or inferred spec is strictly forbidden.\n\n**Action required:**\n1. Ensure the Figma MCP server is running and connected (check your MCP configuration — the server must be started and authenticated before running this agent).\n2. Retry running this agent once the Figma MCP connection is confirmed working.\n\nNo output files have been written. The existing `docs/blueprint/flows/billing.md` skeleton remains unchanged.",
+      "outputPreview": null
+    }
+  ],
+  "totals": {
+    "totalTokens": 48796,
+    "costUsd": 0.0339,
+    "inputTokens": 6,
+    "cacheWriteTokens": 3246,
+    "cacheReadTokens": 44996,
+    "outputTokens": 548,
+    "totalDurationMs": 19186,
+    "updatedAt": "2026-06-22T16:16:48Z"
+  }
+}

@@ -1,5 +1,6 @@
 module.exports = {
   preset: 'jest-expo',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   // Note: jest@29.7.0 is pinned in devDependencies to match jest-expo@56's peer expectations.
   // jest@30 was previously resolving here but jest-expo ships @jest-internals@29 which
   // is incompatible (missing clearMocksOnScope in jest-mock@29).

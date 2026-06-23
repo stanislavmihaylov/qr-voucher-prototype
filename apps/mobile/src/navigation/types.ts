@@ -9,6 +9,16 @@ export type RootStackParamList = {
   VoucherList: undefined
   /** Billing form — receives the selected voucher id as a param */
   Billing: { voucherId: string }
+  /**
+   * QR code display screen — owned by the `qr-code` feature.
+   * Registered here as a placeholder so billing nav type-checks.
+   */
+  QRCode: { purchaseId: string; voucherId: string }
+  /**
+   * General error screen — owned by the `error` feature.
+   * Registered here as a placeholder so billing nav type-checks.
+   */
+  GeneralError: { errorMessage: string }
 }
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

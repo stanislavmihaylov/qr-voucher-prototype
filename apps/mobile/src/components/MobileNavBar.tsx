@@ -12,9 +12,9 @@
  */
 import React from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
-import MenuSvg from '../../assets/features/voucher-selection/icon-menu.svg'
-import ParkHolidaysLogo from '../../assets/features/voucher-selection/logo-park-holidays.svg'
-import ParkLeisureLogo from '../../assets/features/voucher-selection/logo-park-leisure.svg'
+import MenuSvg from '../../assets/common/icon-menu.svg'
+import ParkHolidaysLogo from '../../assets/common/logo-park-holidays.svg'
+import ParkLeisureLogo from '../../assets/common/logo-park-leisure.svg'
 
 export function MobileNavBar() {
   return (

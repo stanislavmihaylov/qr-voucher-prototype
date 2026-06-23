@@ -30,16 +30,16 @@ model Purchase {
 }
 
 model BillingAddress {
-  id         String   @id @default(cuid())
-  purchaseId String   @unique
-  line1      String
-  line2      String?
-  city       String
-  postcode   String
-  county     String?
-  country    String
-  createdAt  DateTime @default(now())
-  purchase   Purchase @relation(fields: [purchaseId], references: [id])
+  id           String   @id @default(cuid())
+  purchaseId   String   @unique
+  addressLine1 String
+  addressLine2 String?
+  city         String
+  county       String
+  postCode     String
+  country      String
+  createdAt    DateTime @default(now())
+  purchase     Purchase @relation(fields: [purchaseId], references: [id])
 }
 
 enum PurchaseStatus {

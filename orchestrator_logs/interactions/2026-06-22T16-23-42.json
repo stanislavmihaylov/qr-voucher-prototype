@@ -1,0 +1,28 @@
+{
+  "threadId": "2026-06-22T16-23-42",
+  "interactions": [
+    {
+      "interruptNumber": 1,
+      "presentedAt": "2026-06-22T16:29:11Z",
+      "respondedAt": "2026-06-22T16:29:40Z",
+      "waitDurationMs": 29414,
+      "type": "approved",
+      "text": "approved",
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null
+    }
+  ],
+  "totals": {
+    "totalTokens": 0,
+    "costUsd": 0,
+    "inputTokens": 0,
+    "cacheWriteTokens": 0,
+    "cacheReadTokens": 0,
+    "outputTokens": 0,
+    "updatedAt": "2026-06-22T16:29:40Z"
+  }
+}
