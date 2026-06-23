@@ -4,3 +4,4 @@ export type {
   CreatePurchaseRequest,
   PurchaseResponse,
 } from './purchase.types';
+export type { Country } from './country.types';

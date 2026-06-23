@@ -48,10 +48,11 @@ describe('CountriesController', () => {
       mockCountriesService.findAll.mockReturnValue(mockCountries);
 
       const res = await request(server).get('/api/countries').expect(200);
+      const body = res.body as Country[];
 
-      expect(Array.isArray(res.body)).toBe(true);
-      expect(res.body.length).toBeGreaterThan(0);
-      res.body.forEach((item: Country) => {
+      expect(Array.isArray(body)).toBe(true);
+      expect(body.length).toBeGreaterThan(0);
+      body.forEach((item) => {
         expect(item).toHaveProperty('code');
         expect(item).toHaveProperty('name');
         expect(typeof item.code).toBe('string');
@@ -70,10 +71,11 @@ describe('CountriesController', () => {
       mockCountriesService.findAll.mockReturnValue(mockCountries);
 
       const res = await request(server).get('/api/countries').expect(200);
+      const body = res.body as Country[];
 
-      const uk = res.body.find((c: Country) => c.code === 'GB');
+      const uk = body.find((c) => c.code === 'GB');
       expect(uk).toBeDefined();
-      expect(uk.name).toBe('United Kingdom');
+      expect(uk?.name).toBe('United Kingdom');
     });
   });
 });
