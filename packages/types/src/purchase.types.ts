@@ -23,7 +23,7 @@ export interface CreatePurchaseRequest {
 }
 
 /**
- * Response shape returned by POST /api/purchases
+ * Response shape returned by POST /api/purchases and GET /api/purchases/:id.
  * qrCode is the server-generated UUID payload used for QR rendering.
  */
 export interface PurchaseResponse {
@@ -31,5 +31,9 @@ export interface PurchaseResponse {
   voucherId: string;
   /** UUID string — QR payload; render client-side */
   qrCode: string;
+  /** Short human-readable code for manual entry, e.g. "81353 - 42142" */
+  voucherCode: string;
+  /** Display name of the purchased voucher, e.g. "1-day voucher" */
+  voucherName: string;
   status: 'COMPLETED';
 }
