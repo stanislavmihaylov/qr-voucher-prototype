@@ -6,7 +6,7 @@ description: >
   Reads the approved plan and implements one vertical slice at a time
   (write test → RED → implement → GREEN → next slice). Syncs backend DTOs to
   packages/types/ upon completion. Triggers: after Interrupt #1 (human approves plan).
-model: sonnet
+model: claude-sonnet-4-6
 tools: [Read, Bash, Edit, Write]
 ---
 

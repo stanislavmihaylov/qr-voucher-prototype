@@ -6,7 +6,7 @@ description: >
   Accepts a scope argument: "backend", "mobile", or "full".
   Runs after test-runner passes.
   Recommended next: if critical/high findings → implementation agents; if clean → doc-writer.
-model: claude-opus-4-6
+model: claude-opus-4-8
 tools: [Read, Bash]
 ---
 
