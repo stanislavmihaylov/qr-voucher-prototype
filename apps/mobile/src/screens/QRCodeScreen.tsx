@@ -45,6 +45,7 @@ import type { RootStackScreenProps } from '../navigation/types'
 import { MobileNavBar } from '../components/MobileNavBar'
 import { AppFooter } from '../components/AppFooter'
 import { Toast } from '../components/qr-code/Toast'
+import { WebContentFrame } from '../components/ui'
 import { usePurchase } from '../hooks/usePurchaseQueries'
 import WifiIcon from '../../assets/features/qr-code/icon-wifi.svg'
 import CopyIcon from '../../assets/features/qr-code/icon-copy.svg'
@@ -100,10 +101,10 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
       <SafeAreaView style={styles.root} edges={['top']}>
         <StatusBar style="light" />
         <MobileNavBar />
-        <View style={styles.loadingContainer}>
+        <WebContentFrame style={styles.loadingContainer}>
           <ActivityIndicator testID="loading-indicator" size="large" color="#FFFFFF" />
           <View testID="qr-skeleton" style={styles.qrSkeleton} />
-        </View>
+        </WebContentFrame>
       </SafeAreaView>
     )
   }
@@ -113,11 +114,11 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
       <SafeAreaView style={styles.root} edges={['top']}>
         <StatusBar style="light" />
         <MobileNavBar />
-        <View style={styles.errorContainer}>
+        <WebContentFrame style={styles.errorContainer}>
           <Text style={styles.errorText} testID="error-message">
             Unable to load your voucher. Please try again.
           </Text>
-        </View>
+        </WebContentFrame>
       </SafeAreaView>
     )
   }
@@ -137,6 +138,7 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
         bounces={Platform.OS === 'ios'}
         overScrollMode={Platform.OS === 'android' ? 'never' : undefined}
       >
+        <WebContentFrame>
         {/* Screen heading */}
         <Text style={styles.heading}>Connect more devices</Text>
 
@@ -201,6 +203,7 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
             <Text style={styles.fillButtonLabel}>Send code</Text>
           </TouchableOpacity>
         </View>
+        </WebContentFrame>
 
         {/* Footer */}
         <AppFooter />

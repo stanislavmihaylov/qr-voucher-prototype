@@ -1,8 +1,9 @@
 /**
  * RootNavigator tests — web-support feature.
  *
- * Slice 1: Renders without crashing and the centred app-frame View is present.
- * Slice 2: Applies webFrame (maxWidth 480) when width > 520, not when width <= 520.
+ * Slice 1: Renders without crashing and all four screens are registered.
+ * Slice 2: The navigator frame is FULL-WIDTH at every viewport size — the 480 px
+ *          maxWidth constraint has been moved into WebContentFrame (per-screen).
  */
 import React from 'react'
 import { render } from '@testing-library/react-native'
@@ -48,9 +49,9 @@ async function renderNavigator() {
 }
 
 // ---------------------------------------------------------------------------
-// Slice 1 — smoke test: renders the centred frame wrapper
+// Slice 1 — smoke test: renders all four screens, no crash
 // ---------------------------------------------------------------------------
-describe('Slice 1 — centred frame wrapper', () => {
+describe('Slice 1 — full-width navigator', () => {
   it('renders without crashing', async () => {
     await expect(renderNavigator()).resolves.toBeDefined()
   })
@@ -62,21 +63,24 @@ describe('Slice 1 — centred frame wrapper', () => {
 })
 
 // ---------------------------------------------------------------------------
-// Slice 2 — webFrame conditional styling
+// Slice 2 — app-frame is FULL-WIDTH at every viewport size
+//
+// The 480 px maxWidth constraint is now in WebContentFrame (per-screen).
+// The navigator frame must NOT constrain width at any viewport size.
 // ---------------------------------------------------------------------------
-describe('Slice 2 — webFrame conditional styling', () => {
+describe('Slice 2 — app-frame has no maxWidth at any viewport size', () => {
   afterEach(() => jest.restoreAllMocks())
 
-  it('applies maxWidth 480 when viewport width > 520', async () => {
+  it('does NOT apply maxWidth 480 on a wide (>520) viewport', async () => {
     jest
       .spyOn(require('react-native'), 'useWindowDimensions')
-      .mockReturnValue({ width: 600, height: 900, scale: 1, fontScale: 1 })
+      .mockReturnValue({ width: 1440, height: 900, scale: 1, fontScale: 1 })
 
     const { getByTestId } = await renderNavigator()
-    expect(getByTestId('app-frame')).toHaveStyle({ maxWidth: 480 })
+    expect(getByTestId('app-frame')).not.toHaveStyle({ maxWidth: 480 })
   })
 
-  it('does NOT apply maxWidth when viewport width <= 520', async () => {
+  it('does NOT apply maxWidth 480 on a mobile (<=520) viewport', async () => {
     jest
       .spyOn(require('react-native'), 'useWindowDimensions')
       .mockReturnValue({ width: 390, height: 844, scale: 1, fontScale: 1 })

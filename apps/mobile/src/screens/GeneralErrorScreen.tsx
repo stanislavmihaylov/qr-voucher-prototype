@@ -26,6 +26,7 @@ import { MobileNavBar } from '../components/MobileNavBar'
 import { AppFooter } from '../components/AppFooter'
 import TriangleExclamationSvg from '../../assets/features/error/icon-triangle-exclamation.svg'
 import PhoneSvg from '../../assets/features/error/icon-phone.svg'
+import { WebContentFrame } from '../components/ui'
 import type { RootStackScreenProps } from '../navigation/types'
 
 export function GeneralErrorScreen({ navigation }: RootStackScreenProps<'GeneralError'>) {
@@ -41,6 +42,7 @@ export function GeneralErrorScreen({ navigation }: RootStackScreenProps<'General
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
       >
+        <WebContentFrame>
         {/* ---- Error messaging block ---- */}
         <View style={styles.errorBlock}>
           {/* Triangle exclamation icon — wrapping View carries accessibility props
@@ -99,6 +101,7 @@ export function GeneralErrorScreen({ navigation }: RootStackScreenProps<'General
             </View>
           </TouchableOpacity>
         </View>
+        </WebContentFrame>
       </ScrollView>
 
       {/* Footer */}

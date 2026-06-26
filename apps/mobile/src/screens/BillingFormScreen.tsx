@@ -31,6 +31,7 @@ import { useCreatePurchase } from '../hooks/usePurchaseQueries'
 import { useCountries } from '../hooks/useCountriesQueries'
 import ArrowBackSvg from '../../assets/features/billing/icon-arrow-back.svg'
 import ArrowDropDownSvg from '../../assets/features/billing/icon-arrow-drop-down.svg'
+import { WebContentFrame } from '../components/ui'
 import type { Country } from '@repo/types'
 
 // ---------------------------------------------------------------------------
@@ -279,6 +280,8 @@ interface TotalBarProps {
 function TotalBar({ voucherName, priceGBP, onConfirm, isLoading, bottomInset }: TotalBarProps) {
   return (
     <View style={[totalBarStyles.container, { paddingBottom: 16 + bottomInset }]}>
+      {/* Voucher name + price row + CTA — centred at 480 px on web */}
+      <WebContentFrame>
       {/* Voucher name */}
       <Text style={totalBarStyles.voucherName}>{voucherName}</Text>
 
@@ -306,6 +309,7 @@ function TotalBar({ voucherName, priceGBP, onConfirm, isLoading, bottomInset }: 
           )}
         </TouchableOpacity>
       </View>
+      </WebContentFrame>
     </View>
   )
 }
@@ -482,6 +486,7 @@ export function BillingFormScreen({ navigation, route }: RootStackScreenProps<'B
         contentContainerStyle={styles.scrollContent}
         keyboardShouldPersistTaps="handled"
       >
+        <WebContentFrame>
         <Text style={styles.sectionHeading}>User address</Text>
 
         <View style={styles.fieldList}>
@@ -544,6 +549,7 @@ export function BillingFormScreen({ navigation, route }: RootStackScreenProps<'B
             loading={countriesLoading}
           />
         </View>
+        </WebContentFrame>
       </ScrollView>
 
       {/* Sticky total bar — SafeAreaView handles bottom inset */}
