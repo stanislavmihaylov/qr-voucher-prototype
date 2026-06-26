@@ -53,7 +53,6 @@ export function VoucherListScreen() {
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         bounces
-        overScrollMode="never"
         refreshControl={
           <RefreshControl
             refreshing={isRefetching}

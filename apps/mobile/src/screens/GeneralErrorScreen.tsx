@@ -40,7 +40,6 @@ export function GeneralErrorScreen({ navigation }: RootStackScreenProps<'General
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
-        overScrollMode="never"
       >
         {/* ---- Error messaging block ---- */}
         <View style={styles.errorBlock}>

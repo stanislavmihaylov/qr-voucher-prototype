@@ -19,7 +19,10 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "Wi-Fi Park Holidays",
+      "backgroundColor": "#03135e",
+      "themeColor": "#03135e"
     }
   }
 }
