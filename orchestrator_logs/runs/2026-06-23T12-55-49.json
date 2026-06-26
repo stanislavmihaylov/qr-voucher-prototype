@@ -2,7 +2,7 @@
   "threadId": "2026-06-23T12-55-49",
   "pid": 28435,
   "createdAt": "2026-06-23T12:55:49Z",
-  "updatedAt": "2026-06-23T15:12:08Z",
+  "updatedAt": "2026-06-23T15:12:15Z",
   "state": {
     "flowName": "error",
     "featureSlug": "error",
@@ -150,17 +150,17 @@
       "model": "n/a",
       "pid": null,
       "startedAt": "2026-06-23T15:12:08Z",
-      "completedAt": null,
-      "durationMs": null,
+      "completedAt": "2026-06-23T15:12:15Z",
+      "durationMs": 7020,
       "totalTokens": null,
       "inputTokens": null,
       "cacheWriteTokens": null,
       "cacheReadTokens": null,
       "outputTokens": null,
       "costUsd": null,
-      "status": "running",
+      "status": "success",
       "error": null,
-      "outputPreview": null
+      "outputPreview": "PR created: https://github.com/stanislavmihaylov/qr-voucher-prototype/pull/4\nTitle: feat(mobile): add Generic error screen shown when purchase creation fails, offering a \"Try again\" CTA that returns to BillingFormScreen and a support phone number as fallback."
     }
   ],
   "totals": {
@@ -170,8 +170,8 @@
     "cacheWriteTokens": 215650,
     "cacheReadTokens": 5191575,
     "outputTokens": 60511,
-    "totalDurationMs": 1466880,
-    "updatedAt": "2026-06-23T13:28:17Z"
+    "totalDurationMs": 1473900,
+    "updatedAt": "2026-06-23T15:12:15Z"
   },
   "completedAt": "2026-06-23T15:12:08Z"
 }

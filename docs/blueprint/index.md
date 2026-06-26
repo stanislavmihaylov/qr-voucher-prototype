@@ -109,6 +109,7 @@ Use this table when running `design-analyst-flow` for each feature.
 | `billing` | 2:1457 | Main Stack | Address/contact form before "payment" |
 | `qr-code` | 2:1481, 2:1512 | Main Stack | QR code display after mock payment success |
 | `error` | 2:1411 | Main Stack | Generic error screen with retry CTA |
+| `web-support` | NO_FIGMA | n/a | Infrastructure: react-native-web browser support — design-analyst-flow must skip Figma and emit required output fields directly (see flows/web-support.md) |
 
 ## Next Steps
 
@@ -119,3 +120,4 @@ Feature order (suggested by flow order):
 2. `billing`
 3. `qr-code`
 4. `error`
+5. `web-support` — no Figma step; design-analyst-flow reads the existing flow spec and outputs feature_slug/feature_description directly

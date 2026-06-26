@@ -10,6 +10,8 @@
 - [x] `billing` — Enter billing/address details before mock payment (depends on: voucher-selection)
 - [x] `qr-code` — Display QR code after mock payment success (depends on: billing)
 - [x] `error` — Generic error screen with retry CTA (depends on: nothing)
+- [x] `error` — Generic error screen with retry CTA (depends on: nothing)
+- [ ] `web-support` — Enable the app to run in a browser via react-native-web (depends on: nothing) **[NO_FIGMA_DESIGN]**
 
 ## In Progress
 
