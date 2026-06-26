@@ -30,7 +30,7 @@ import { SkeletonCard } from '../components/voucher/SkeletonCard'
 import { MobileNavBar } from '../components/MobileNavBar'
 import { StepBarHeader } from '../components/StepBarHeader'
 import { AppFooter } from '../components/AppFooter'
-import { EmptyState, ErrorMessage } from '../components/ui'
+import { EmptyState, ErrorMessage, WebContentFrame } from '../components/ui'
 import type { RootStackParamList } from '../navigation/types'
 import type { WifiVoucherResponse } from '@repo/types'
 
@@ -53,7 +53,6 @@ export function VoucherListScreen() {
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         bounces
-        overScrollMode="never"
         refreshControl={
           <RefreshControl
             refreshing={isRefetching}
@@ -65,8 +64,8 @@ export function VoucherListScreen() {
         <MobileNavBar />
         <StepBarHeader currentStep={1} title="Buy Wi-Fi access" />
 
-        {/* Content area */}
-        <View style={styles.contentArea}>
+        {/* Content area — centred at 480 px on web; full-width on native */}
+        <WebContentFrame testID="web-content-frame" style={styles.contentArea}>
           <Text style={styles.introParagraph} accessibilityRole="text">
             Select a Wi-Fi package. Your access period begins when you complete your purchase.
           </Text>
@@ -116,7 +115,7 @@ export function VoucherListScreen() {
               ))}
             </View>
           )}
-        </View>
+        </WebContentFrame>
 
         <AppFooter />
       </ScrollView>

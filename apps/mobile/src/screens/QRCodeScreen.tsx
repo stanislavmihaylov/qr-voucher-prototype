@@ -45,6 +45,7 @@ import type { RootStackScreenProps } from '../navigation/types'
 import { MobileNavBar } from '../components/MobileNavBar'
 import { AppFooter } from '../components/AppFooter'
 import { Toast } from '../components/qr-code/Toast'
+import { WebContentFrame } from '../components/ui'
 import { usePurchase } from '../hooks/usePurchaseQueries'
 import WifiIcon from '../../assets/features/qr-code/icon-wifi.svg'
 import CopyIcon from '../../assets/features/qr-code/icon-copy.svg'
@@ -79,8 +80,16 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
     setTimeout(() => setCopyLabel('Copy code'), 1500)
   }, [resolvedVoucherCode])
 
-  const handleSend = useCallback(() => {
-    Share.share({ message: resolvedVoucherCode })
+  const handleSend = useCallback(async () => {
+    try {
+      await Share.share({ message: resolvedVoucherCode })
+    } catch {
+      // Web Share API unavailable (desktop browsers without HTTPS, or unsupported browser).
+      // Fall back to clipboard copy with the same "Copied!" feedback.
+      await Clipboard.setStringAsync(resolvedVoucherCode)
+      setCopyLabel('Copied!')
+      setTimeout(() => setCopyLabel('Copy code'), 1500)
+    }
   }, [resolvedVoucherCode])
 
   // ---------------------------------------------------------------------------
@@ -92,10 +101,10 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
       <SafeAreaView style={styles.root} edges={['top']}>
         <StatusBar style="light" />
         <MobileNavBar />
-        <View style={styles.loadingContainer}>
+        <WebContentFrame style={styles.loadingContainer}>
           <ActivityIndicator testID="loading-indicator" size="large" color="#FFFFFF" />
           <View testID="qr-skeleton" style={styles.qrSkeleton} />
-        </View>
+        </WebContentFrame>
       </SafeAreaView>
     )
   }
@@ -105,11 +114,11 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
       <SafeAreaView style={styles.root} edges={['top']}>
         <StatusBar style="light" />
         <MobileNavBar />
-        <View style={styles.errorContainer}>
+        <WebContentFrame style={styles.errorContainer}>
           <Text style={styles.errorText} testID="error-message">
             Unable to load your voucher. Please try again.
           </Text>
-        </View>
+        </WebContentFrame>
       </SafeAreaView>
     )
   }
@@ -129,6 +138,7 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
         bounces={Platform.OS === 'ios'}
         overScrollMode={Platform.OS === 'android' ? 'never' : undefined}
       >
+        <WebContentFrame>
         {/* Screen heading */}
         <Text style={styles.heading}>Connect more devices</Text>
 
@@ -193,6 +203,7 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
             <Text style={styles.fillButtonLabel}>Send code</Text>
           </TouchableOpacity>
         </View>
+        </WebContentFrame>
 
         {/* Footer */}
         <AppFooter />
@@ -229,6 +240,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#FFFFFF',
     lineHeight: 28,
+    marginLeft: 16,
   },
   card: {
     backgroundColor: '#FFFFFF',
@@ -236,8 +248,8 @@ const styles = StyleSheet.create({
     padding: 24,
     gap: 16,
     alignItems: 'center',
-    width: 343,
-    alignSelf: 'center',
+    marginHorizontal: 16,
+    marginTop: 16,
   },
   cardHeader: {
     flexDirection: 'column',

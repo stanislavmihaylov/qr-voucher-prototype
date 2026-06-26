@@ -1,0 +1,8 @@
+{
+  "feature_slug": "web-support",
+  "date": "2026-06-26",
+  "agent": "reviewer",
+  "feedback_type": "review_finding",
+  "description": "Review found high issues: ## Review Report\n\n**Scope:** mobile — feature `web-support` (branch `feat/web-support`)\n**Files reviewed:** 8\n**Date:** 2026-06-26\n\nFiles in scope (changed by / relevant to web-support):\n- `apps/mobil",
+  "resolution": "resolved after 1 iteration"
+}
