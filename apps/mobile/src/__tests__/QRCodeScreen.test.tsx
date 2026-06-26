@@ -240,6 +240,51 @@ describe('Slice 5 — Send code', () => {
 })
 
 // ---------------------------------------------------------------------------
+// Slice 5b: "Send code" falls back to clipboard when Share.share rejects
+//           (e.g. desktop browser where navigator.share is unavailable)
+// ---------------------------------------------------------------------------
+
+describe('Slice 5b — Send code Share fallback', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+    ;(Share.share as jest.Mock).mockRejectedValue(new Error('navigator.share not supported'))
+    ;(Clipboard.setStringAsync as jest.Mock).mockResolvedValue(undefined)
+  })
+
+  it('copies to clipboard when Share.share rejects', async () => {
+    const { getByTestId } = await renderScreen()
+
+    await waitFor(() => {
+      expect(getByTestId('send-button')).toBeTruthy()
+    })
+
+    await act(async () => {
+      fireEvent.press(getByTestId('send-button'))
+    })
+
+    await waitFor(() => {
+      expect(Clipboard.setStringAsync).toHaveBeenCalledWith('81353 - 42142')
+    })
+  })
+
+  it('shows "Copied!" label on copy-button after Share fallback', async () => {
+    const { getByTestId, getByText } = await renderScreen()
+
+    await waitFor(() => {
+      expect(getByText('Copy code')).toBeTruthy()
+    })
+
+    await act(async () => {
+      fireEvent.press(getByTestId('send-button'))
+    })
+
+    await waitFor(() => {
+      expect(getByText('Copied!')).toBeTruthy()
+    })
+  })
+})
+
+// ---------------------------------------------------------------------------
 // Slice 6: usePurchase hook calls api.get for the purchase
 // ---------------------------------------------------------------------------
 

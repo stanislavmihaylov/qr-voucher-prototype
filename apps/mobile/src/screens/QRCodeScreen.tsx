@@ -79,8 +79,16 @@ export function QRCodeScreen({ route }: RootStackScreenProps<'QRCode'>) {
     setTimeout(() => setCopyLabel('Copy code'), 1500)
   }, [resolvedVoucherCode])
 
-  const handleSend = useCallback(() => {
-    Share.share({ message: resolvedVoucherCode })
+  const handleSend = useCallback(async () => {
+    try {
+      await Share.share({ message: resolvedVoucherCode })
+    } catch {
+      // Web Share API unavailable (desktop browsers without HTTPS, or unsupported browser).
+      // Fall back to clipboard copy with the same "Copied!" feedback.
+      await Clipboard.setStringAsync(resolvedVoucherCode)
+      setCopyLabel('Copied!')
+      setTimeout(() => setCopyLabel('Copy code'), 1500)
+    }
   }, [resolvedVoucherCode])
 
   // ---------------------------------------------------------------------------
