@@ -11,7 +11,7 @@
 - [x] `qr-code` — Display QR code after mock payment success (depends on: billing)
 - [x] `error` — Generic error screen with retry CTA (depends on: nothing)
 - [x] `error` — Generic error screen with retry CTA (depends on: nothing)
-- [ ] `web-support` — Enable the app to run in a browser via react-native-web (depends on: nothing) **[NO_FIGMA_DESIGN]**
+- [x] `web-support` — Enable the app to run in a browser via react-native-web (depends on: nothing) **[NO_FIGMA_DESIGN]**
 
 ## In Progress
 
@@ -117,3 +117,23 @@ _none_
 - [x] `icon-youtube.svg` — exported (SVG, 24×24, confirmed) → `apps/mobile/assets/features/error/`
 - [ ] Consider consolidating `icon-fb.svg`, `icon-youtube.svg` (duplicated across features) into `apps/mobile/assets/shared/`
 - [ ] Replace placeholder phone number `12345 1245 1224` with real Wi-Fi Park Holidays support number before release
+
+## Feature: Web Support
+> Enable the Expo mobile app to run in a desktop browser with a centred 480 px mobile-width layout using react-native-web.
+
+### Backend
+- No backend work required — the NestJS API is browser-agnostic and requires no changes.
+
+### Frontend
+- [ ] Install web deps in `apps/mobile`: `npx expo install react-native-web react-dom @expo/metro-config`
+- [ ] Create `apps/mobile/metro.config.js` — enable SVG transformer for web alongside native (see flow spec for exact content)
+- [ ] Add `"web": "expo start --web"` script to `apps/mobile/package.json`
+- [ ] Update `apps/mobile/app.json` — add/extend `"web"` key with `favicon`, `name`, `backgroundColor: "#03135e"`, `themeColor: "#03135e"`
+- [ ] `RootNavigator.tsx` — wrap `NavigationContainer` in a centred `View` with `maxWidth: 480` on web; navy `#03135e` side gutters; detect via `useWindowDimensions` width > 520
+- [ ] `VoucherListScreen.tsx` — remove `overScrollMode="never"` prop from `ScrollView` (Android-only, logs warning on web)
+- [ ] Audit `expo-secure-store` usage: `grep -r "expo-secure-store" apps/mobile/src/` — if found, replace with `Platform.OS === 'web'` conditional using `localStorage`; if not found, no action needed
+- [ ] Verify `react-navigation` hash routing works on web (default behaviour — no extra config needed)
+- [ ] Verify `react-native-paper`, `react-native-svg`, `react-native-qrcode-svg` all render correctly in browser (`expo start --web`)
+
+### Assets
+- No new assets required — all existing assets are already SVG/PNG compatible with the web bundler.
