@@ -240,6 +240,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#FFFFFF',
     lineHeight: 28,
+    marginLeft: 16,
   },
   card: {
     backgroundColor: '#FFFFFF',
@@ -247,8 +248,8 @@ const styles = StyleSheet.create({
     padding: 24,
     gap: 16,
     alignItems: 'center',
-    width: 343,
-    alignSelf: 'center',
+    marginHorizontal: 16,
+    marginTop: 16,
   },
   cardHeader: {
     flexDirection: 'column',
