@@ -1,0 +1,68 @@
+{
+  "threadId": "2026-06-23T12-46-25",
+  "pid": 27841,
+  "createdAt": "2026-06-23T12:46:25Z",
+  "updatedAt": "2026-06-23T12:54:51Z",
+  "state": {
+    "flowName": "error",
+    "featureSlug": "error",
+    "featureDescription": "",
+    "scope": "auto",
+    "status": "failed",
+    "errorMessage": "Rerun not available for design_analyst_flow — use ./pipeline resume",
+    "iteration": 0,
+    "featurePlan": "",
+    "planFeedback": "",
+    "openQuestions": [],
+    "questionAnswers": {},
+    "reviewSeverity": "clean"
+  },
+  "nodes": [
+    {
+      "node": "environment_check",
+      "agentName": "node:env-check",
+      "model": "n/a",
+      "pid": null,
+      "startedAt": "2026-06-23T12:46:25Z",
+      "completedAt": "2026-06-23T12:46:29Z",
+      "durationMs": 4482,
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null,
+      "status": "success",
+      "error": null,
+      "outputPreview": null
+    },
+    {
+      "node": "design_analyst_flow",
+      "agentName": "design-analyst-flow",
+      "model": "claude-sonnet-4-6",
+      "pid": 22408,
+      "startedAt": "2026-06-23T12:46:29Z",
+      "completedAt": "2026-06-23T12:46:50Z",
+      "durationMs": 21881,
+      "totalTokens": 37044,
+      "inputTokens": 5,
+      "cacheWriteTokens": 26505,
+      "cacheReadTokens": 10023,
+      "outputTokens": 511,
+      "costUsd": 0.1101,
+      "status": "stale",
+      "error": "`FIGMA_MCP_FAILED: No such tool available: mcp__figma__get_figma_data`\n\nThe Figma MCP tool is unavailable. Per the absolute rule in this agent's instructions, I must stop immediately and return control to the orchestrator.",
+      "outputPreview": null
+    }
+  ],
+  "totals": {
+    "totalTokens": 37044,
+    "costUsd": 0.1101,
+    "inputTokens": 5,
+    "cacheWriteTokens": 26505,
+    "cacheReadTokens": 10023,
+    "outputTokens": 511,
+    "totalDurationMs": 26363,
+    "updatedAt": "2026-06-23T12:46:50Z"
+  }
+}

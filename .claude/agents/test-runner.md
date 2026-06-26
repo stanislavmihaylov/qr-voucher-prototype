@@ -6,7 +6,7 @@ description: >
   (test → lint → tsc --noEmit). Diagnoses and fixes all failure categories — test
   infrastructure issues AND implementation bugs — until the suite is GREEN.
   Triggers: after feature-implementation-frontend completes.
-model: sonnet
+model: claude-sonnet-4-6
 tools: [Read, Bash, Edit, Write]
 ---
 

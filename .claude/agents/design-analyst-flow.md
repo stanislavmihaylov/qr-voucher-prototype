@@ -6,7 +6,7 @@ description: >
   those specific nodes. Produces docs/blueprint/flows/<feature-slug>.md with
   full layout, component, interaction, and accessibility specs for React Native.
   Triggers: after design-discovery, once per feature before plan-feature.
-model: sonnet
+model: claude-sonnet-4-6
 tools: [Read, Write, Bash, mcp__figma__get_figma_data, mcp__figma__download_figma_images]
 ---
 

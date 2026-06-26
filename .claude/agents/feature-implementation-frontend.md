@@ -6,7 +6,7 @@ description: >
   Reads the approved plan, imports types from @repo/types (synced inline by
   feature-implementation-backend), and implements one vertical slice at a time.
   Triggers: after feature-implementation-backend completes.
-model: sonnet
+model: claude-sonnet-4-6
 tools: [Read, Bash, Edit, Write, mcp__figma__get_figma_data, mcp__figma__download_figma_images]
 ---
 

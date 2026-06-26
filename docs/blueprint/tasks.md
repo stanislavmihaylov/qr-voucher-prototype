@@ -9,7 +9,7 @@
 - [x] `voucher-selection` — Browse and select a Wi-Fi package from the list (depends on: nothing)
 - [x] `billing` — Enter billing/address details before mock payment (depends on: voucher-selection)
 - [x] `qr-code` — Display QR code after mock payment success (depends on: billing)
-- [ ] `error` — Generic error screen with retry CTA (depends on: nothing)
+- [x] `error` — Generic error screen with retry CTA (depends on: nothing)
 
 ## In Progress
 
@@ -96,3 +96,22 @@ _none_
 - [x] `icon-wifi.svg` — exported (SVG, 56×56, confirmed) → `apps/mobile/assets/features/qr-code/`
 - [x] `icon-copy.svg` — exported (SVG, 24×24, confirmed) → `apps/mobile/assets/features/qr-code/`
 - [ ] Reuse `logo-park-holidays.svg`, `logo-park-leisure.svg`, `icon-menu.svg`, `icon-facebook.svg`, `icon-youtube.svg` from `apps/mobile/assets/features/voucher-selection/` (or move to `apps/mobile/assets/shared/`)
+
+## Feature: Error
+> Display a generic, stateless error screen with a "Try again" CTA (returns to BillingFormScreen) and a support phone link when purchase creation fails.
+
+### Backend
+- No backend work required — this is a purely presentational screen triggered by a failed API call in BillingFormScreen.
+
+### Frontend
+- [ ] `GeneralErrorScreen` — renders triangle icon, error heading + body (static copy), "Try again" pill button (`navigation.goBack()`), support copy + phone `Link` row, `MobileNavBar`, `AppFooter`
+- [ ] `PhoneLink` inline component — `View` row with phone SVG icon + underlined `Text`; taps `Linking.openURL('tel:...')` — small enough to keep inline in screen, no separate component file needed
+- [ ] React Navigation: register `GeneralErrorScreen` in Main Stack; `BillingFormScreen` calls `navigation.navigate('GeneralError')` inside `useMutation` `onError` callback
+- [ ] Confirm `MobileNavBar` and `AppFooter` shared components are already implemented (voucher-selection + qr-code features) before building this screen
+
+### Assets
+- [x] `icon-triangle-exclamation.svg` — exported (SVG, 48×48, confirmed) → `apps/mobile/assets/features/error/`
+- [x] `icon-fb.svg` — exported (SVG, 24×24, confirmed) → `apps/mobile/assets/features/error/`
+- [x] `icon-youtube.svg` — exported (SVG, 24×24, confirmed) → `apps/mobile/assets/features/error/`
+- [ ] Consider consolidating `icon-fb.svg`, `icon-youtube.svg` (duplicated across features) into `apps/mobile/assets/shared/`
+- [ ] Replace placeholder phone number `12345 1245 1224` with real Wi-Fi Park Holidays support number before release

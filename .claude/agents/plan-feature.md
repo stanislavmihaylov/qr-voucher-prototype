@@ -6,7 +6,7 @@ description: >
   module, mobile React Native screens, and shared types contract.
   Triggers: after design-analyst-flow. NEVER writes code — only plans.
 Recommended next: feature-implementation-backend.
-model: sonnet
+model: claude-opus-4-8
 tools: [Read, Bash]
 ---
 
