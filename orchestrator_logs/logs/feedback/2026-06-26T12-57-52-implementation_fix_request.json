@@ -1,0 +1,8 @@
+{
+  "feature_slug": "enable-the-expo-mobile-app-to-run-in-a-w",
+  "date": "2026-06-26",
+  "agent": "user",
+  "feedback_type": "implementation_fix_request",
+  "description": "User requested implementation fixes: I want the web version to have full-width header(the one with the menu), full-width footer, full-width heading and full-width step progress. Also allow http://192.168.68.115:3001, currently is blocked by CORS",
+  "resolution": "pending"
+}

@@ -1,0 +1,56 @@
+{
+  "threadId": "2026-06-26T12-57-52",
+  "interactions": [
+    {
+      "interruptNumber": 1,
+      "presentedAt": "2026-06-26T13:00:31Z",
+      "respondedAt": "2026-06-26T13:05:22Z",
+      "waitDurationMs": 291670,
+      "type": "approved",
+      "text": "approved",
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null
+    },
+    {
+      "interruptNumber": 2,
+      "presentedAt": "2026-06-26T13:20:34Z",
+      "respondedAt": "2026-06-26T13:27:21Z",
+      "waitDurationMs": 407730,
+      "type": "feedback",
+      "text": "fix: I want the web version to have full-width header(the one with the menu), full-width footer, full-width heading and full-width step progress. Also allow http://192.168.68.115:3001, currently is blocked by CORS",
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null
+    },
+    {
+      "interruptNumber": 2,
+      "presentedAt": "2026-06-26T13:38:18Z",
+      "respondedAt": "2026-06-26T13:50:55Z",
+      "waitDurationMs": 757539,
+      "type": "merge",
+      "text": "merge",
+      "totalTokens": null,
+      "inputTokens": null,
+      "cacheWriteTokens": null,
+      "cacheReadTokens": null,
+      "outputTokens": null,
+      "costUsd": null
+    }
+  ],
+  "totals": {
+    "totalTokens": 0,
+    "costUsd": 0,
+    "inputTokens": 0,
+    "cacheWriteTokens": 0,
+    "cacheReadTokens": 0,
+    "outputTokens": 0,
+    "updatedAt": "2026-06-26T13:50:55Z"
+  }
+}
